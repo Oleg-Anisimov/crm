@@ -1,0 +1,4 @@
+rootProject.name = 'crm'
+include 'backend'
+include 'frontend'
+
