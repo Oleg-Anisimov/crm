@@ -15,7 +15,6 @@ public abstract class BaseEntity {
     protected LocalDateTime created = LocalDateTime.now();
 
     @UpdateTimestamp
-    @Temporal(TemporalType.TIMESTAMP)
     protected LocalDateTime updated;
 
 }
