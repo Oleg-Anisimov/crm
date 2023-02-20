@@ -1,0 +1,24 @@
+{
+  "columns": [
+    {
+      "name": "id",
+      "header": "id",
+      "valueRef": "id"
+    },
+    {
+      "name": "contact_person",
+      "header": "Контактное лицо",
+      "valueRef": "person"
+    },
+    {
+      "name": "phone",
+      "header": "Телефон",
+      "valueRef": "phone"
+    },
+    {
+      "name": "client_type",
+      "header": "Тип клиента",
+      "valueRef": "clientType"
+    }
+  ]
+}

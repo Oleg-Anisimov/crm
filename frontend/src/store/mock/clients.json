@@ -1,0 +1,46 @@
+[
+  {
+    "id": 1,
+    "contactPerson": {
+      "id": 1,
+      "firstName": "Иван",
+      "lastName": "Иванов",
+      "paternalName": "Иванович",
+      "phone": "+791892211122"
+    },
+    "clientType": "Corporate"
+  },
+  {
+    "id": 2,
+    "contactPerson": {
+      "id": 1,
+      "firstName": "Иван",
+      "lastName": "Иванов",
+      "paternalName": "Иванович",
+      "phone": "+791892211122"
+    },
+    "clientType": "Corporate"
+  },
+  {
+    "id": 3,
+    "contactPerson": {
+      "id": 1,
+      "firstName": "Иван",
+      "lastName": "Иванов",
+      "paternalName": "Иванович",
+      "phone": "+791892211122"
+    },
+    "clientType": "Corporate"
+  },
+  {
+    "id": 4,
+    "contactPerson": {
+      "id": 1,
+      "firstName": "Иван",
+      "lastName": "Иванов",
+      "paternalName": "Иванович",
+      "phone": "+791892211122"
+    },
+    "clientType": "Corporate"
+  }
+]
