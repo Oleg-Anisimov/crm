@@ -1,10 +1,12 @@
 package me.stepanov.crm.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 
 @Data
 @AllArgsConstructor
@@ -20,4 +22,5 @@ public class Status extends BaseEntity {
 
     @Column(name ="name")
     private String name;
+
 }

@@ -32,6 +32,7 @@ public class EntityRepository {
         return entityManager.find(entityClass, id);
     }
 
+
     public <E extends BaseEntity> List<E> listForUser(Class<E> entityClass, User user) {
         CriteriaBuilder builder = entityManager.getCriteriaBuilder();
         CriteriaQuery<E> cq = builder.createQuery(entityClass);

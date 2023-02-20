@@ -23,7 +23,6 @@ public class StatusService {
     @Transactional
     public StatusDto create(StatusDto statusDto){
         Status status = new Status();
-        status.setId(statusDto.getId());
         status.setName(statusDto.getName());
         entityRepository.persist(status);
         return mapper.map(status,StatusDto.class);
