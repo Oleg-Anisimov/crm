@@ -1,20 +1,18 @@
 <template>
   <header>
     <div>
-      <div class="menu_button">
-        <img  src="icon_menu.svg"/>
-      </div>
       <div class="company_logo">
         <img src="vite.svg" alt="">
         <h1>Vite corp</h1>
       </div>
     </div>
+
+    <div class="searchbar">
+      <input type="text" placeholder="Search">
+    </div>
     <div class="userbar">
       <p>Иванов И.И.</p>
-      <div class="userbar_img">
-        <img  src="avatar_mock.jpg" alt="">
-
-      </div>
+      <img src="avatar_mock.jpg" alt="">
     </div>
   </header>
 
@@ -30,22 +28,24 @@ export default defineComponent({
 
 <style scoped>
 header {
-  display: flex;
-  justify-content: space-between;
-  height: 7vh;
-  box-shadow: 0px -5px 10px 0px rgba(0, 0, 0, 0.5);
-  align-items: center;
+  /*background-color: #f1f1f1;*/
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
 }
 
 .userbar {
-  display: flex;
-  margin-right: 2em;
+  justify-self: end;
 }
 
-.userbar_img > img {
+.userbar > img {
   width: 50px;
   height: 50px;
   border-radius: 20%;
+}
+
+.searchbar > input {
+  width: 98.5%;
+  height: 1.7em;
 }
 
 .company_logo {
@@ -67,20 +67,6 @@ h1 {
 
 p {
   display: inline-block;
-}
-
-div {
-  display: inline-block;
-}
-
-.menu_button {
-  width: 80px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.menu_button > img {
-  margin: 0 auto;
 }
 
 </style>
