@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Slf4j
@@ -35,5 +37,20 @@ public class ClientService {
         entityRepository.delete(client);
     }
 
+    @Transactional
+    public void update(Client client){
+        entityRepository.persist(client);
+    }
+
+    @Transactional
+    public Client getById(Long id){
+       return entityRepository.getById(Client.class,id);
+    }
+
+    @Transactional
+    public List<ClientDto> getAll(){
+        return entityRepository.list(Client.class).stream()
+                .map(entity ->mapper.map(entity,ClientDto.class)).collect(Collectors.toList());
+    }
 
 }
