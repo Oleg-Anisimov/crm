@@ -28,8 +28,8 @@ public class ClientController {
     }
 
     @PostMapping("/update")
-    public ResponseEntity update(@RequestBody Client client){
-        clientService.update(client);
+    public ResponseEntity update(@RequestBody ClientDto clientDto){
+        clientService.update(clientDto);
         return ResponseEntity.ok().build();
     }
 

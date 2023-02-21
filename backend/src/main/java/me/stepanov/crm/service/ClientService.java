@@ -38,7 +38,10 @@ public class ClientService {
     }
 
     @Transactional
-    public void update(Client client){
+    public void update(ClientDto clientDto){
+        Client client = entityRepository.getById(Client.class,clientDto.getId());
+        client.setClientType(clientDto.getClientType());
+        client.setContactPerson(clientDto.getContactPerson());
         entityRepository.persist(client);
     }
 

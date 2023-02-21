@@ -37,7 +37,7 @@ public class Deal extends BaseEntity {
 
     @ManyToOne(targetEntity = Status.class)
     @JoinColumn(name = "status_id",nullable = false)
-    private String status;
+    private Status status;
 
     @ManyToOne(targetEntity = User.class)
     @JoinColumn(name = "user_id", nullable = false)
