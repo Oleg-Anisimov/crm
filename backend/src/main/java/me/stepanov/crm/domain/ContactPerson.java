@@ -12,7 +12,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 @Embeddable
-public class ContactPerson{
+public class ContactPerson {
 
     @Column(name = "first_name")
     private String firstName;
@@ -25,5 +25,16 @@ public class ContactPerson{
 
     @Column(name = "phone")
     private String phone;
+
+    public String getFullName() {
+        return this.getSecondName() + " "
+                + this.getFirstName() + " "
+                + this.getMiddleName();
+    }
+    public String getShortName() {
+        return this.getSecondName() + " "
+                + this.getFirstName().charAt(0) + ". "
+                + this.getMiddleName().charAt(0) + ".";
+    }
 
 }

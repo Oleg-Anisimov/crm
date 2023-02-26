@@ -6,7 +6,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr v-for="row in rows">
+      <tr v-for="row in values">
         <td v-for="cell in row"> {{cell}} </td>
       </tr>
     </tbody>

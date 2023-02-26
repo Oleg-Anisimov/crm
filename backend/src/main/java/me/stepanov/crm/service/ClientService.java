@@ -2,6 +2,7 @@ package me.stepanov.crm.service;
 
 import lombok.extern.slf4j.Slf4j;
 import me.stepanov.crm.domain.Client;
+import me.stepanov.crm.domain.ContactPerson;
 import me.stepanov.crm.dto.ClientDto;
 import me.stepanov.crm.repo.EntityRepository;
 import org.modelmapper.ModelMapper;
@@ -54,7 +55,13 @@ public class ClientService {
     @Transactional
     public List<ClientDto> getAll(){
         return entityRepository.list(Client.class).stream()
-                .map(entity ->mapper.map(entity,ClientDto.class)).collect(Collectors.toList());
+                .map(client -> new ClientDto(
+                        client.getId(),
+                        client.getContactPerson().getFullName(),
+                        client.getContactPerson().getPhone(),
+                        client.getClientType()
+                ))
+                .collect(Collectors.toList());
     }
 
     @Transactional
