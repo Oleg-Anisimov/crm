@@ -28,6 +28,11 @@ public class EntityRepository {
         entityManager.remove(entity);
     }
 
+    public <E extends BaseEntity> void deleteAll(Class<E> entityClass) {
+        String query = "DELETE FROM " +  entityClass.getSimpleName();
+        entityManager.createQuery(query).executeUpdate();
+    }
+
     public <E extends BaseEntity> E getById(Class<E> entityClass, Long id) {
         return entityManager.find(entityClass, id);
     }

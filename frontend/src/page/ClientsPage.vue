@@ -1,7 +1,7 @@
 <template>
   <div>
     <h2>Клиенты</h2>
-    <Table :layout="clientsTableLayout" :values="getClients"/>
+    <Table :layout="clientsTableLayout" :values="clients.value"/>
   </div>
 </template>
 
@@ -9,19 +9,22 @@
 import Table from "../components/Table.vue";
 import {defineComponent} from "vue";
 import clientsTableLayout from "../store/mock/layouts/clients_table_layout.json";
-import clientData from "../store/mock/clients.json";
+import {storeToRefs} from "pinia";
+import {useClientStore} from "../store/modules/clientStore";
 
 export default defineComponent({
   name: "ClientsPage",
   components: {Table},
+  setup: () => {
+    const { clients, loading, error } = storeToRefs(useClientStore())
+    const { fetchClients } = useClientStore()
+
+    fetchClients()
+    console.log(clients.value)
+  },
   data: () => {
     return {
       clientsTableLayout: clientsTableLayout,
-    }
-  },
-  computed: {
-    getClients() {
-      return this.transformData(clientData)
     }
   },
   methods: {
@@ -36,7 +39,7 @@ export default defineComponent({
         return client
       })
     }
-  }
+  },
 })
 </script>
 

@@ -1,19 +1,32 @@
 import {defineStore} from "pinia";
-import Client from "../../model/client";
+import axios from "axios";
 
-private interface clientsState {
-    clients: Array<Client>
-}
-
-export const useClients = defineStore('clients', {
-    state: () => {
-        return {
-            clients: []
-        }
+export const useClientStore = defineStore({
+    id: 'client',
+    state: () => ({
+        clients: [],
+        client: null,
+        loading: false,
+        error: null
+    }),
+    getters: {
+      getClients() {
+          return this.clients
+      }
     },
     actions: {
-        loadClients() {
-
+        async fetchClients() {
+            this.clients = [];
+            this.loading = true;
+            try {
+                this.clients = await axios.get('/api/client/byAll')
+                    .then((response) => response.data)
+            } catch (error) {
+                this.error = error;
+                console.log(error);
+            } finally {
+                this.loading = false
+            }
         }
     }
 })

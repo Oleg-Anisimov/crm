@@ -2,6 +2,7 @@ package me.stepanov.crm.controller;
 
 import me.stepanov.crm.domain.Client;
 import me.stepanov.crm.dto.ClientDto;
+import me.stepanov.crm.repo.EntityRepository;
 import me.stepanov.crm.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -43,5 +44,9 @@ public class ClientController {
         return clientService.getAll();
     }
 
-
+    @DeleteMapping
+    public ResponseEntity deleteAll() {
+        clientService.deleteAll();
+        return ResponseEntity.ok().build();
+    }
 }

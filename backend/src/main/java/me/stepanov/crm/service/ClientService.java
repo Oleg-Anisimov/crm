@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -54,6 +55,11 @@ public class ClientService {
     public List<ClientDto> getAll(){
         return entityRepository.list(Client.class).stream()
                 .map(entity ->mapper.map(entity,ClientDto.class)).collect(Collectors.toList());
+    }
+
+    @Transactional
+    public void deleteAll() {
+        entityRepository.deleteAll(Client.class);
     }
 
 }
