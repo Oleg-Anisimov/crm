@@ -2,16 +2,17 @@ package me.stepanov.crm.service;
 
 import lombok.extern.slf4j.Slf4j;
 import me.stepanov.crm.domain.Client;
-import me.stepanov.crm.domain.ContactPerson;
 import me.stepanov.crm.dto.ClientDto;
 import me.stepanov.crm.repo.EntityRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.criteria.CriteriaQuery;
 import javax.transaction.Transactional;
+import java.util.HashMap;
 import java.util.List;
-import java.util.Optional;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service

@@ -38,7 +38,7 @@ public class UserController {
         return userDetailsService.getById(id);
     }
 
-    @GetMapping("/byAll")
+    @GetMapping("/getAll")
     public List<UserDto> getAll(){
         return userDetailsService.getAll();
     }

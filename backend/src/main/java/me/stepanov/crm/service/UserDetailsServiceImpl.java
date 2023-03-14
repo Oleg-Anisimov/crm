@@ -2,23 +2,16 @@ package me.stepanov.crm.service;
 
 import lombok.extern.slf4j.Slf4j;
 import me.stepanov.crm.domain.Role;
-import me.stepanov.crm.domain.Status;
 import me.stepanov.crm.domain.User;
-import me.stepanov.crm.dto.StatusDto;
 import me.stepanov.crm.dto.UserDto;
 import me.stepanov.crm.repo.EntityRepository;
-import me.stepanov.crm.util.annotation.UserDetailsMapper;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service

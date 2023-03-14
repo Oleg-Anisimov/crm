@@ -35,6 +35,7 @@ public class EntityRepository {
         entityManager.createQuery(query).executeUpdate();
     }
 
+
     public <E extends BaseEntity> E getById(Class<E> entityClass, Long id) {
         return entityManager.find(entityClass, id);
     }
@@ -60,6 +61,13 @@ public class EntityRepository {
 
         return query.getResultList();
     }
+    public <E extends BaseEntity> List<E> list(CriteriaQuery<E> criteriaQuery, Integer offset, Integer size) {
+        TypedQuery<E> query = entityManager.createQuery(criteriaQuery)
+                .setFirstResult(offset)
+                .setMaxResults(size);
+        return query.getResultList();
+    }
+
 
 }
 

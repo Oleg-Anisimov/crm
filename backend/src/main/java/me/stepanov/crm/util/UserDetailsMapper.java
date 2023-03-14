@@ -1,4 +1,4 @@
-package me.stepanov.crm.util.annotation;
+package me.stepanov.crm.util;
 
 import me.stepanov.crm.domain.User;
 import org.springframework.security.core.GrantedAuthority;

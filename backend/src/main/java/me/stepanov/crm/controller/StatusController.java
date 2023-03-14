@@ -38,7 +38,7 @@ public class StatusController {
         return statusService.getById(id);
     }
 
-    @GetMapping("/byAll")
+    @GetMapping("/getAll")
     public List<StatusDto> getAll(){
         return statusService.getAll();
     }

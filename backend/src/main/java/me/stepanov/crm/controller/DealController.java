@@ -36,7 +36,7 @@ public class DealController {
         return dealService.getById(id);
     }
 
-    @GetMapping("/byAll")
+    @GetMapping("/getAll")
     public List<DealDto> getAll(){
         return dealService.getAll();
     }

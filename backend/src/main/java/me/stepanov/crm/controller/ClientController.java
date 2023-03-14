@@ -2,12 +2,12 @@ package me.stepanov.crm.controller;
 
 import me.stepanov.crm.domain.Client;
 import me.stepanov.crm.dto.ClientDto;
-import me.stepanov.crm.repo.EntityRepository;
 import me.stepanov.crm.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.constraints.Min;
 import java.util.List;
 
 @RestController
@@ -39,7 +39,7 @@ public class ClientController {
         return clientService.getById(id);
     }
 
-    @GetMapping("/byAll")
+    @GetMapping("/getAll")
     public List<ClientDto> getAll(){
         return clientService.getAll();
     }
