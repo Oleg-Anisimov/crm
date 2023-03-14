@@ -3,6 +3,7 @@ import DealsPage from "./page/DealsPage.vue";
 import BlankPage from "./page/BlankPage.vue";
 import DealCreationPage from "./page/DealCreationPage.vue";
 import ClientsPage from "./page/ClientsPage.vue";
+import Typography from "./components/Typography.vue";
 
 export default createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -32,6 +33,5 @@ export default createRouter({
             name: 'deals-creation',
             component: DealCreationPage
         },
-
     ]
 })

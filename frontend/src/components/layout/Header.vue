@@ -2,17 +2,13 @@
   <header>
     <div>
       <div class="company_logo">
-        <img src="vite.svg" alt="">
+        <img src="/vite.svg" alt="">
         <h1>Vite corp</h1>
       </div>
     </div>
-
-    <div class="searchbar">
-      <input type="text" placeholder="Search">
-    </div>
     <div class="userbar">
       <p>Иванов И.И.</p>
-      <img src="avatar_mock.jpg" alt="">
+      <img src="/avatar_mock.jpg" alt="">
     </div>
   </header>
 
@@ -30,7 +26,7 @@ export default defineComponent({
 header {
   /*background-color: #f1f1f1;*/
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr ;
 }
 
 .userbar {

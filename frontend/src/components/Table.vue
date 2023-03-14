@@ -40,13 +40,17 @@ export default defineComponent({
 table {
   border-collapse: collapse;
   width: 100%;
-  border: 1px solid #123E89;
 }
 
 thead {
-  background-color: #123E89;
+  background-color: #092C4C;
   color: #fff;
   font-weight: 600;
+}
+
+thead > tr {
+  border-radius: 5px;
+
 }
 
 tbody > tr:nth-child(even) {

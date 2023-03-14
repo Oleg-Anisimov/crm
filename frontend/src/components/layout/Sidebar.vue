@@ -1,14 +1,14 @@
 <template>
   <aside>
     <div>
-      <router-link to="/clients"><SidebarItem icon="icon_users.svg" text="Клиенты"/></router-link>
-      <router-link to="/deals"><SidebarItem icon="icon_deals.svg" text="Сделки"/></router-link>
-      <router-link to="/"><SidebarItem icon="icon_tasks.svg" text="Задачи"/></router-link>
-      <router-link to="/"><SidebarItem icon="icon_payments.svg" text="Платежи"/></router-link>
-      <router-link to="/"><SidebarItem icon="icon_calendar.svg" text="Календарь"/></router-link>
+      <router-link to="/clients"><SidebarItem icon="/icon_users.svg" text="Клиенты"/></router-link>
+      <router-link to="/deals"><SidebarItem icon="/icon_deals.svg" text="Сделки"/></router-link>
+      <router-link to="/"><SidebarItem icon="/icon_tasks.svg" text="Задачи"/></router-link>
+      <router-link to="/"><SidebarItem icon="/icon_payments.svg" text="Платежи"/></router-link>
+      <router-link to="/"><SidebarItem icon="/icon_calendar.svg" text="Календарь"/></router-link>
     </div>
     <div>
-      <SidebarItem icon="icon_settings.svg" text="Настройки"/>
+      <SidebarItem icon="/icon_settings.svg" text="Настройки"/>
     </div>
   </aside>
 

@@ -1,6 +1,6 @@
 <template>
   <h2>Сделки</h2>
-<!--  <button @click="this.$router.push('/deals/new')">New</button>-->
+  <button @click="this.$router.push('/deals/new')">New</button>
   <div class="content">
     <div class="column"><h2>На согласовании</h2>
       <div class="column_content" @drop="onDrop($event, 'agreement')" @dragenter="prevent" @dragover="prevent">
@@ -68,6 +68,11 @@ export default defineComponent({
 h2 {
   margin-left: 1rem;
   display: inline-block;
+  margin-bottom: 0;
+}
+
+.content > h2 {
+  margin: 0;
 }
 .content {
   width: 100%;

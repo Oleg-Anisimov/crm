@@ -1,19 +1,27 @@
+<script setup lang="ts">
+import CustomButton from "../components/Button.vue";
+import SelectField from "@/components/SelectField.vue";
+import TextField from "@/components/TextField.vue";
+import NumberField from "@/components/NumberField.vue";
+</script>
 <template>
   <h2>Новая сделка</h2>
   <div class="content">
     <div>
-        <p>Название</p>
-        <input type="text">
-        <p>Детали</p>
+      <text-field label="Название" type="text" placeholder="Введите название сделки"/>
+      <text-field label="Описание" type="text-area" placeholder="Введите название сделки"/>
+      <select-field label="Клиент" type="text" placeholder="Выберите клиента" :options="options"/>
+      <select-field label="Ответственные" type="text" placeholder="Выберите клиента" :options="options"/>
 
-        <textarea/>
-        <p>Клиент</p>
+      <number-field label="Сумма" placeholder="Введите сумму"/>
 
-        <button>Создать</button>
+      <p></p>
+
+      <custom-button label="Создать" color="primary"/>
+
 
 
     </div>
-    <div>asdfasdf</div>
   </div>
 </template>
 
@@ -21,18 +29,27 @@
 import {defineComponent} from "vue";
 
 export default defineComponent({
-  name: "DealCreationPage"
+  name: "DealCreationPage",
+  data() {
+    return {
+      options: [
+          'option-1',
+          'option-2',
+          'option-3',
+          'option-4',
+          'option-5'
+      ]
+    }
+  }
+
 })
 </script>
 
 <style scoped>
 .content {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-gap: 1em;
-}
-
-.content > div{
-  background-color: azure;
+  border-radius: 8px;
+  border: 1px solid #242424;
+  padding: 1em 1em;
+  max-width: 800px;
 }
 </style>
