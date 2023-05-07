@@ -72,7 +72,7 @@ p {
   border-radius: 5px;
   font-size: 1em;
   color: var(--grey-1);
-  width: 100%;
+  width: 90%;
   background: url("/dropdown.svg") no-repeat right;
   background-origin: content-box;
 
