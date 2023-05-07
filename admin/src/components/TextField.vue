@@ -45,7 +45,7 @@ p {
   border-radius: 5px;
   font-size: 1em;
   color: var(--grey-1);
-  width: 100%;
+  width: 90%;
 
   &_success {
     border: 1px solid var(--success);
