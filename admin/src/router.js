@@ -4,6 +4,7 @@ import DealsPage from "./pages/DealsPage.vue";
 import ClientsPage from "./pages/ClientsPage.vue";
 import PaymentsPage from "./pages/PaymentsPage.vue";
 import DealCreationPage  from "./pages/DealCreationPage.vue";
+import SingleDealPage from "./pages/SingleDealPage.vue";
 
 export default createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -17,6 +18,11 @@ export default createRouter({
             path: '/deals',
             name: 'Deals',
             component: DealsPage
+        },
+        {
+            path: '/deal/:id',
+            name: 'Deal',
+            component: SingleDealPage
         },
         {
             path: '/clients',

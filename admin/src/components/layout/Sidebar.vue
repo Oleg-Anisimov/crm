@@ -1,11 +1,11 @@
 <template>
   <aside>
-    <img src="avatar_mock.jpg">
+    <img src="/public/avatar_mock.jpg">
 
-    <router-link to="/deals"><sidebar-item image="src/assets/deal_icon.svg" content="Сделки"/></router-link>
-    <router-link to="/clients"><sidebar-item image="src/assets/clients_icon.svg" content="Клиенты"/></router-link>
-    <router-link to="/payments"><sidebar-item image="src/assets/payments_icon.svg" content="Платежи"/></router-link>
-    <router-link to="/stats"><sidebar-item image="src/assets/stats_icon.svg" content="Статистика"/></router-link>
+    <router-link to="/deals"><sidebar-item image="/src/assets/deal_icon.svg" content="Сделки"/></router-link>
+    <router-link to="/clients"><sidebar-item image="/src/assets/clients_icon.svg" content="Клиенты"/></router-link>
+    <router-link to="/payments"><sidebar-item image="/src/assets/payments_icon.svg" content="Платежи"/></router-link>
+    <router-link to="/settings"><sidebar-item image="/src/assets/settings_icon.svg" content="Настройки"/></router-link>
 
   </aside>
 </template>

@@ -1,24 +1,18 @@
 <template>
-  <div class="deal_card" draggable="true">
+  <div class="deal_card">
     <h4>#{{ deal.id }}: {{ deal.title }}</h4>
     <p>Цена: {{ deal.amount }}</p>
-    <p>Ответственные: </p>
-    <div v-for="person in deal.responsiblePeoples" class="user">
-      <img src="avatar_mock.jpg" alt="">
-      <p> {{ person.lastName }} </p>
-    </div>
+    <p>Клиент: Иванов И.И.</p>
+    <p>Ответственные: Степанов Н.Н.</p>
   </div>
 </template>
 
-<script lang="ts">
-import {defineComponent, PropType} from "vue";
-import Deal from "../model/deal";
+<script>
+import {defineComponent} from "vue";
 
 export default defineComponent({
   name: "DealCard",
-  props: {
-    deal: Object as PropType<Deal>
-  }
+  props: ['deal']
 })
 </script>
 
@@ -27,9 +21,9 @@ export default defineComponent({
 .deal_card {
   padding: 1em;
   text-align: left;
-  background-color: #e8bbbb;
-  height: 230px;
-  cursor: move;
+  background-color: #f8f8f8;
+  border-radius: 5px;
+  margin-bottom: 0.5em;
 }
 
 

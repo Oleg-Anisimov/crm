@@ -21,3 +21,7 @@
   --grey-4: #bdbdbd;
   --grey-5: #e0e0e0;
 }
+
+* {
+  box-sizing: border-box;
+}
