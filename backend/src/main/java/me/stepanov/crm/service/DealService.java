@@ -1,7 +1,10 @@
 package me.stepanov.crm.service;
 
 import lombok.extern.slf4j.Slf4j;
+import me.stepanov.crm.domain.Client;
 import me.stepanov.crm.domain.Deal;
+import me.stepanov.crm.domain.Status;
+import me.stepanov.crm.domain.User;
 import me.stepanov.crm.dto.DealDto;
 import me.stepanov.crm.repo.EntityRepository;
 import org.modelmapper.ModelMapper;
@@ -35,9 +38,9 @@ public class DealService {
         deal.setArchived(dealDto.getArchived());
         deal.setPrice(dealDto.getPrice());
         deal.setAvatarUrl(dealDto.getAvatarUrl());
-        deal.setUser(userDetailsServiceImpl.getById(dealDto.getUserId()));
-        deal.setStatus(statusService.getById(dealDto.getStatusId()));
-        deal.setClient(clientService.getById(dealDto.getClientId()));
+        deal.setUser(entityRepository.getById(User.class,dealDto.getUserId()));
+        deal.setStatus(entityRepository.getById(Status.class,dealDto.getStatusId()));
+        deal.setClient(entityRepository.getById(Client.class,dealDto.getClientId()));
         entityRepository.persist(deal);
         return mapper.map(deal,DealDto.class);
     }
@@ -55,9 +58,9 @@ public class DealService {
         deal.setArchived(dealDto.getArchived());
         deal.setPrice(dealDto.getPrice());
         deal.setAvatarUrl(dealDto.getAvatarUrl());
-        deal.setUser(userDetailsServiceImpl.getById(dealDto.getUserId()));
-        deal.setStatus(statusService.getById(dealDto.getStatusId()));
-        deal.setClient(clientService.getById(dealDto.getClientId()));
+        deal.setUser(entityRepository.getById(User.class,dealDto.getUserId()));
+        deal.setStatus(entityRepository.getById(Status.class,dealDto.getStatusId()));
+        deal.setClient(entityRepository.getById(Client.class,dealDto.getClientId()));
         entityRepository.persist(deal);
     }
 

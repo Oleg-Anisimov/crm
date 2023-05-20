@@ -34,7 +34,7 @@ public class StatusController {
     }
 
     @GetMapping("/byId")
-    public Status getById(Long id){
+    public StatusDto getById(Long id){
         return statusService.getById(id);
     }
 

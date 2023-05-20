@@ -58,8 +58,9 @@ public class UserDetailsServiceImpl {
     }
 
     @Transactional
-    public User getById(Long id) {
-        return entityRepository.getById(User.class,id);
+    public UserDto getById(Long id) {
+        User userId = entityRepository.getById(User.class, id);
+        return mapper.map(userId,UserDto.class);
     }
 
     @Transactional

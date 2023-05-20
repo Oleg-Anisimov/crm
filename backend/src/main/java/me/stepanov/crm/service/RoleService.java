@@ -43,8 +43,9 @@ public class RoleService {
     }
 
     @Transactional
-    public Role getById(Long id) {
-        return entityRepository.getById(Role.class, id);
+    public RoleDto getById(Long id) {
+        Role roleId = entityRepository.getById(Role.class, id);
+        return mapper.map(roleId,RoleDto.class);
     }
 
     @Transactional

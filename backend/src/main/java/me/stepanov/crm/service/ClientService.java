@@ -49,8 +49,9 @@ public class ClientService {
     }
 
     @Transactional
-    public Client getById(Long id){
-       return entityRepository.getById(Client.class,id);
+    public ClientDto getById(Long id){
+        Client clientId = entityRepository.getById(Client.class, id);
+        return mapper.map(clientId, ClientDto.class);
     }
 
     @Transactional

@@ -33,7 +33,7 @@ public class RoleController {
     }
 
     @GetMapping("/byId")
-    public Role getById(Long id){
+    public RoleDto getById(Long id){
         return roleService.getById(id);
     }
 

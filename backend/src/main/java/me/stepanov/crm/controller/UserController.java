@@ -34,7 +34,7 @@ public class UserController {
     }
 
     @GetMapping("/byId")
-    public User getById(Long id){
+    public UserDto getById(Long id){
         return userDetailsService.getById(id);
     }
 

@@ -34,7 +34,7 @@ public class ClientController {
     }
 
     @GetMapping("/byId")
-    public Client getById(Long id){
+    public ClientDto getById(Long id){
         return clientService.getById(id);
     }
 
