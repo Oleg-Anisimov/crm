@@ -42,9 +42,12 @@ public class DatabaseInitializer {
         ClientDto clientDto = new ClientDto();
         clientDto.setClientType(ClientType.PERSONAL);
         clientDto.setContactPerson(new ContactPerson("Иван", "Иванов", "Иванович", "+79003123121"));
+        clientService.create(clientDto);
 
+        clientDto = new ClientDto(ClientType.PERSONAL, "79775830248", new ContactPerson("Петр", "Петров", "Петрович", "79775830249"));
         clientService.create(clientDto);
-        clientService.create(clientDto);
+
+        clientDto = new ClientDto(ClientType.CORPORATE, "74953763276", new ContactPerson("Ирина", "Иванова", "Корсикова", "79775830249"));
         clientService.create(clientDto);
 
     }
@@ -78,12 +81,17 @@ public class DatabaseInitializer {
 
     void initStatus() {
         StatusDto statusDto = new StatusDto();
-        statusDto.setName("открыта");
-
-        statusService.create(statusDto);
-        statusService.create(statusDto);
+        statusDto.setName("Новая");
         statusService.create(statusDto);
 
+        statusDto.setName("На согласовании");
+        statusService.create(statusDto);
+
+        statusDto.setName("В работе");
+        statusService.create(statusDto);
+
+        statusDto.setName("Готова");
+        statusService.create(statusDto);
     }
 
     void initDeal() {

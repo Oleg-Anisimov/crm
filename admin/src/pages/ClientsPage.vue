@@ -1,21 +1,19 @@
 <template>
     <div>
     <h2>Клиенты</h2>
-    <Table :layout="clientsTableLayout" :values="clients"/>
+    <Table :layout="clientsTableLayout" :values="GET_ALL()"/>
   </div>
 </template>
 
 <script>
+import Table from "../components/layout/Table.vue";
+import {mapActions, mapGetters} from "vuex";
+
 export default {
-  name: "DealCreationPage",
+  name: "Clients page",
   components:{Table},
   data() {
     return {
-      clients: [
-        {id: 1, contact_person: 'Иванов И.И.', phone: '+79775830241', client_type: 'PERSONAL'},
-        {id: 2, contact_person: 'Петров П.П.', phone: '+79775830242', client_type: 'PERSONAL'},
-        {id: 3, contact_person: 'Смирнов C.C.', phone: '+79775830243', client_type: 'PERSONAL'},
-      ],
       clientsTableLayout:
           {
             columns: [
@@ -42,6 +40,18 @@ export default {
             ]
           }
     }
+  },
+  methods: {
+    ...mapGetters({
+      GET_ALL: 'client/GET_ALL_CLIENTS'
+    }),
+    ...mapActions({
+      FETCH: 'client/LOAD'
+    })
+  },
+
+  mounted() {
+    this.FETCH();
   }
 }
 </script>

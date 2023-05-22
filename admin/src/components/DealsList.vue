@@ -44,7 +44,7 @@ export default {
       this.UPDATE_DEAL(deal)
     },
     navigateToDeal(id) {
-      router.push(`/deal/${id}`)
+      router.push({path: `/deal/${id}`, params: {id: id}})
     }
   }
 }
@@ -61,15 +61,5 @@ export default {
   border-radius: 5px;
   padding: 0.5em;
   min-width: 200px;
-}
-
-.drag {
-  background-color: #c0c0c0;
-  border: 1px solid var(--second);
-  opacity: 100%;
-}
-
-.ghost-new {
-  border: 1px solid var(--error);
 }
 </style>

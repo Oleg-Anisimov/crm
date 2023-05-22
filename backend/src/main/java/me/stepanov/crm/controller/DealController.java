@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 @RestController
-@RequestMapping("/deal")
+@RequestMapping("/deals")
 public class DealController {
     @Autowired
     private DealService dealService;
@@ -19,7 +19,7 @@ public class DealController {
         return dealService.create(dealDto);
     }
 
-    @GetMapping("/delete")
+    @DeleteMapping("/delete")
     public ResponseEntity delete(Long id) {
         dealService.delete(id);
         return ResponseEntity.ok().build();
@@ -31,12 +31,12 @@ public class DealController {
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping("/byId")
-    public Deal getById(Long id){
+    @GetMapping("/{id}")
+    public DealDto getById(@PathVariable Long id){
         return dealService.getById(id);
     }
 
-    @GetMapping("/getAll")
+    @GetMapping
     public List<DealDto> getAll(){
         return dealService.getAll();
     }

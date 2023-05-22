@@ -62,8 +62,9 @@ public class DealService {
     }
 
     @Transactional
-    public Deal getById(Long id){
-        return entityRepository.getById(Deal.class,id);
+    public DealDto getById(Long id){
+        Deal deal = entityRepository.getById(Deal.class, id);
+        return mapper.map(deal, DealDto.class);
     }
 
     @Transactional

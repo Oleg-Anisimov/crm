@@ -87,7 +87,7 @@ p {
 
 .dropdown {
   overflow: auto;
-  height: 250px;
+  max-height: 250px;
   border-radius: 5px;
   border: 1px solid var(--grey-3);
   margin-top: 5px;

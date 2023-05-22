@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/status")
+@RequestMapping("/statuses")
 public class StatusController {
 
     @Autowired
@@ -33,12 +33,12 @@ public class StatusController {
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping("/byId")
-    public Status getById(Long id){
+    @GetMapping("/{id}")
+    public Status getById(@PathVariable Long id){
         return statusService.getById(id);
     }
 
-    @GetMapping("/getAll")
+    @GetMapping
     public List<StatusDto> getAll(){
         return statusService.getAll();
     }

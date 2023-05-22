@@ -29,4 +29,10 @@ public class ClientDto {
         this.phone = phone;
         this.clientType = clientType;
     }
+
+    public ClientDto(ClientType type, String phone, ContactPerson contactPerson) {
+        this.clientType = type;
+        this.phone = phone;
+        this.contactPerson = contactPerson;
+    }
 }

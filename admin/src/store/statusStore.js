@@ -1,12 +1,9 @@
+import axios from "axios";
+
 export const status = {
     namespaced: true,
     state: {
-        statuses: [
-            {id: 1, name: 'NEW'},
-            {id: 2, name: 'AGREEMENT'},
-            {id: 3, name: 'IN_PROGRESS'},
-            {id: 4, name: 'DONE'},
-        ]
+        statuses: []
     },
 
     getters: {
@@ -14,10 +11,18 @@ export const status = {
     },
 
     mutations: {
-
+        UPDATE_STATUS_LIST: (state, statuses) => {
+            state.statuses = statuses
+        },
     },
     actions: {
-        LOAD() {}, //todo: complete
+        FETCH({commit}) {
+            let url = '/api/statuses'
+            return axios.get(url).then((response) => {
+                commit('UPDATE_STATUS_LIST', response.data)
+                return response.data
+            })
+        },
         CREATE() {}, //todo: complete
         DELETER() {}, //todo: complete
     }

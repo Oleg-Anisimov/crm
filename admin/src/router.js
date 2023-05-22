@@ -22,7 +22,8 @@ export default createRouter({
         {
             path: '/deal/:id',
             name: 'Deal',
-            component: SingleDealPage
+            component: SingleDealPage,
+            props: true
         },
         {
             path: '/clients',

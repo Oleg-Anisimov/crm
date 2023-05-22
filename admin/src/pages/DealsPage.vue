@@ -7,7 +7,7 @@
     </router-link>
 
     <div class="content">
-      <deals-list v-for="item in statuses" :key="item.id" :deals="getDealByStatus(item.name)" :status="item.name" :title="item.name"/>
+      <deals-list v-for="item in statuses" :key="item.id" :deals="getDealsByStatus(item.id)" :status="item.name" :title="item.name"/>
     </div>
   </div>
 </template>
@@ -18,32 +18,30 @@ import Button from "../components/control/Button.vue";
 import draggable from 'vuedraggable'
 import {mapActions, mapGetters} from "vuex";
 import DealsList from "../components/DealsList.vue";
+import {ref} from "vue";
 
 export default {
   name: "DealsPage",
   components: {DealsList, Button, DealCard, draggable},
-  computed: {
-    ...mapGetters({
-      GET_DEAL_BY_ID: "deals/GET_DEAL_BY_ID",
-      GET_DEAL_BY_STATUS: "deals/GET_DEAL_BY_STATUS",
-      GET_ALL_STATUSES: 'status/GET_ALL_STATUSES'
-    }),
-
-    statuses(){
-      return this.GET_ALL_STATUSES
-    },
-
-    getDealByStatus() {
-      return (status) => this.GET_DEAL_BY_STATUS(status);
-    },
+  data() {
+    return {
+      deals: null,
+      statuses: null
+    }
   },
   methods: {
     ...mapActions({
-      loadStatuses: 'status/LOAD'
+      loadStatuses: 'status/FETCH',
+      fetchDeals: 'deals/FETCH_ALL',
+      fetchClients: 'client/LOAD'
     }),
     ...mapGetters({
       GET_ALL_DEALS: 'deals/GET_ALL_DEALS',
     }),
+
+    getDealsByStatus(id) {
+      return this.deals.filter(deal => deal.statusId === id)
+    },
 
     onItemChange(e, list) {
       if (e.added) {
@@ -56,8 +54,10 @@ export default {
   },
 
   //hooks
-  beforeMount() {
-    this.loadStatuses()
+  mounted() {
+    this.fetchDeals().then(data => this.deals = data)
+    this.loadStatuses().then(data => this.statuses = data)
+    this.fetchClients()
   },
 }
 </script>
