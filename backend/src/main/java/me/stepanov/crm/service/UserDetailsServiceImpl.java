@@ -5,18 +5,27 @@ import me.stepanov.crm.domain.Role;
 import me.stepanov.crm.domain.User;
 import me.stepanov.crm.dto.UserDto;
 import me.stepanov.crm.repo.EntityRepository;
+import me.stepanov.crm.repo.UserRepository;
+import me.stepanov.crm.util.SecurityUtils;
+import me.stepanov.crm.util.UserDetailsMapper;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
 @Slf4j
-public class UserDetailsServiceImpl {
+public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Autowired
     private ModelMapper mapper;
@@ -24,6 +33,10 @@ public class UserDetailsServiceImpl {
     private PasswordEncoder passwordEncoder;
     @Autowired
     private EntityRepository entityRepository;
+    @Autowired
+    private UserRepository userRepository;
+    @Autowired
+    private UserDetailsMapper userDetailsMapper;
 
     @Transactional
     public UserDto create(UserDto userDto){
@@ -68,4 +81,28 @@ public class UserDetailsServiceImpl {
         return entityRepository.list(User.class).stream()
                 .map(entity ->mapper.map(entity,UserDto.class)).collect(Collectors.toList());
     }
+
+    public User getCurrentUser(){
+        String username = SecurityUtils.getCurrentUsername();
+        return userRepository.findUserByLogin(username);
+    }
+
+
+    public Boolean isLoggedIn(){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        return authentication.isAuthenticated();
+    }
+    public User findByLogin(String login){
+        return userRepository.findUserByLogin(login);
+    }
+
+
+    @Override
+    public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
+        Optional<User> user = Optional.ofNullable(findByLogin(login));
+        UserDetails userDetails = userDetailsMapper.convertToUserDetails(user.orElseThrow(() ->
+                new  UsernameNotFoundException("Wrong user or password")));
+        return userDetails;
+    }
+
 }

@@ -17,6 +17,8 @@ public class User extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_seq")
     private Long id;
 
+    @Column(name = "login")
+    private String login;
     @Column(name = "first_name")
     private String firstName;
 

@@ -1,5 +1,6 @@
 package me.stepanov.crm.controller;
 
+import me.stepanov.crm.api.ApiResponse;
 import me.stepanov.crm.domain.User;
 import me.stepanov.crm.dto.UserDto;
 import me.stepanov.crm.service.UserDetailsServiceImpl;
@@ -41,5 +42,15 @@ public class UserController {
     @GetMapping("/getAll")
     public List<UserDto> getAll(){
         return userDetailsService.getAll();
+    }
+
+    @GetMapping("/loggedin")
+    public ApiResponse<Boolean> loggedIn(){
+        return ApiResponse.ok(userDetailsService.isLoggedIn());
+    }
+
+    @GetMapping("/bylogin")
+    public User getByLogin(String login) {
+        return userDetailsService.findByLogin(login);
     }
 }
