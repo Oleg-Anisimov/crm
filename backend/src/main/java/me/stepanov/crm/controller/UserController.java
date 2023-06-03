@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/users")
 public class UserController {
 
     @Autowired
@@ -33,12 +33,12 @@ public class UserController {
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping("/byId")
-    public User getById(Long id){
-        return userDetailsService.getById(id);
+    @GetMapping("/{id}")
+    public UserDto getById(@PathVariable Long id){
+        return userDetailsService.findUser(id);
     }
 
-    @GetMapping("/getAll")
+    @GetMapping
     public List<UserDto> getAll(){
         return userDetailsService.getAll();
     }

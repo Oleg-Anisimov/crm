@@ -1,12 +1,19 @@
 <template>
   <p v-if="label" class="label">{{ label }}</p>
-  <input :class="['text', `text_${color}`]" type="number" min="0" :placeholder="placeholder">
+  <input v-model="value" :class="['text', `text_${actualColor}`]" type="number" min="0" :placeholder="placeholder" @blur="validateAndSend">
 
 </template>
 
 <script>
 export default {
   name: "NumberField",
+  emits: ['valueChanged'],
+  data() {
+    return {
+      value: null,
+      actualColor: ''
+    }
+  },
   props: {
     label: {
       type: String,
@@ -21,6 +28,16 @@ export default {
       type: String,
       required: false,
       default: 'default'
+    }
+  },
+  methods: {
+    validateAndSend() {
+      if (this.value === null || this.value <= 0) {
+        this.actualColor = 'error'
+      } else {
+        this.actualColor = ''
+      }
+      this.$emit('valueChanged', value)
     }
   }
 }

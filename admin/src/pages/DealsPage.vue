@@ -7,7 +7,7 @@
     </router-link>
 
     <div class="content">
-      <deals-list v-for="item in statuses" :key="item.id" :deals="getDealsByStatus(item.id)" :status="item.name" :title="item.name"/>
+      <deals-list v-for="item in statuses" :key="item.id" :deals="getDealsByStatus(item.id)" :status="item" :title="item.name"/>
     </div>
   </div>
 </template>
@@ -33,31 +33,30 @@ export default {
     ...mapActions({
       loadStatuses: 'status/FETCH',
       fetchDeals: 'deals/FETCH_ALL',
-      fetchClients: 'client/LOAD'
+      fetchClients: 'client/LOAD',
+      fetchUsers: 'users/LOAD',
+      updateDeal: 'deals/UPDATE_DEAL'
     }),
     ...mapGetters({
       GET_ALL_DEALS: 'deals/GET_ALL_DEALS',
+      GET_DEAL_BY_ID: 'deals/GET_DEAL_BY_ID'
     }),
 
     getDealsByStatus(id) {
       return this.deals.filter(deal => deal.statusId === id)
     },
-
-    onItemChange(e, list) {
-      if (e.added) {
-        this.UPDATE_DEAL({
-          deal: e.added.element,
-          newStatus: list
-        })
-      }
-    }
   },
 
   //hooks
   mounted() {
-    this.fetchDeals().then(data => this.deals = data)
-    this.loadStatuses().then(data => this.statuses = data)
+    this.fetchUsers()
     this.fetchClients()
+    this.loadStatuses().then(data => this.statuses = data)
+    this.fetchDeals().then(data => {
+      console.log('fetched deals')
+      console.log(data)
+      this.deals = data
+    })
   },
 }
 </script>

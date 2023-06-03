@@ -1,5 +1,6 @@
 package me.stepanov.crm.domain;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -26,11 +27,17 @@ public class ContactPerson {
     @Column(name = "phone")
     private String phone;
 
+    @Column(name = "email")
+    private String email;
+
+    @JsonProperty("fullName")
     public String getFullName() {
         return this.getSecondName() + " "
                 + this.getFirstName() + " "
                 + this.getMiddleName();
     }
+
+    @JsonProperty("shortName")
     public String getShortName() {
         return this.getSecondName() + " "
                 + this.getFirstName().charAt(0) + ". "

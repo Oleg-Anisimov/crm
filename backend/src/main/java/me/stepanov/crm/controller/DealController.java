@@ -1,6 +1,5 @@
 package me.stepanov.crm.controller;
 
-import me.stepanov.crm.domain.Deal;
 import me.stepanov.crm.dto.DealDto;
 import me.stepanov.crm.service.DealService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,5 +1,6 @@
 package me.stepanov.crm.service;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import me.stepanov.crm.domain.Role;
 import me.stepanov.crm.domain.User;
@@ -14,18 +15,17 @@ import javax.transaction.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Service
 @Slf4j
+@Service
+@Transactional
+@RequiredArgsConstructor
 public class UserDetailsServiceImpl {
 
-    @Autowired
-    private ModelMapper mapper;
-    @Autowired
-    private PasswordEncoder passwordEncoder;
-    @Autowired
-    private EntityRepository entityRepository;
+    private final ModelMapper mapper;
+    private final PasswordEncoder passwordEncoder;
+    private final EntityRepository entityRepository;
 
-    @Transactional
+    
     public UserDto create(UserDto userDto){
         User user = new User();
         user.setEmail(userDto.getEmail());
@@ -39,12 +39,12 @@ public class UserDetailsServiceImpl {
         return mapper.map(user, UserDto.class);
     }
 
-    @Transactional
+    
     public void delete(Long id){
          User user = entityRepository.getById(User.class, id);
         entityRepository.delete(user);
     }
-    @Transactional
+    
     public void update(UserDto userDto) {
         User user = entityRepository.getById(User.class, userDto.getId());
         user.setEmail(userDto.getEmail());
@@ -57,12 +57,16 @@ public class UserDetailsServiceImpl {
         entityRepository.persist(user);
     }
 
-    @Transactional
+    
     public User getById(Long id) {
         return entityRepository.getById(User.class,id);
     }
 
-    @Transactional
+    public UserDto findUser(Long id) {
+        User user = entityRepository.getById(User.class, id);
+        return new UserDto(user.getId(), user.getFirstName(), user.getSecondName(), user.getMiddleName(), user.getPhone(), user.getEmail());
+    }
+    
     public List<UserDto> getAll(){
         return entityRepository.list(User.class).stream()
                 .map(entity ->mapper.map(entity,UserDto.class)).collect(Collectors.toList());

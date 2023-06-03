@@ -23,7 +23,6 @@ export const deals = {
             state.deals = deals
         },
         UPDATE_DEAL: (state, deal) => {
-            console.log(deal)
             for (let i = 0; i < state.deals.length; i++) {
                 let currentDeal = state.deals[i];
                 if (currentDeal.id === deal.id) {
@@ -50,13 +49,20 @@ export const deals = {
                 return response.data
             }).catch(error => console.log(error))
         },
-        CREATE_DEAL() {
-        }, //todo: complete deal creating
-        DELETE_DEAL() {
-        }, //todo: complete deleting deal
+        CREATE_DEAL({commit}, deal) {
+            const url = '/api/deals/create'
+            return axios.post(url, deal).then((response) => {
+                commit('UPDATE_DEAL', deal)
+            })
+        },
         UPDATE_DEAL({commit}, deal) {
-            console.log('action update')
-            commit('UPDATE_DEAL', deal)
+            const url = '/api/deals/update'
+            console.log(deal)
+            return axios.post(url, deal).then((response) => {
+                console.log(response)
+                commit('UPDATE_DEAL', deal)
+            })
+
         }
     }
 }

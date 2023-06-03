@@ -8,7 +8,7 @@
         item-key="id"
         drag-class="drag"
         ghost-class="ghost-new"
-        @change="e => onItemChange(e, status)">
+        @change="e => onItemChange(e, status.id)">
       <template #item="{element}">
         <DealCard :deal="element" @dblclick="navigateToDeal(element.id)"/>
       </template>
@@ -36,13 +36,14 @@ export default {
       UPDATE_DEAL: "deals/UPDATE_DEAL"
     }),
 
-    onItemChange(e, newStatus) {
+    onItemChange(e, status) {
       if (!e.added) return
 
       let deal = e.added.element
-      deal.status = newStatus
+      deal.statusId = status
       this.UPDATE_DEAL(deal)
     },
+
     navigateToDeal(id) {
       router.push({path: `/deal/${id}`, params: {id: id}})
     }

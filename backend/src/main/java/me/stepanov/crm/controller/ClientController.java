@@ -33,9 +33,9 @@ public class ClientController {
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping("/byId")
-    public Client getById(Long id){
-        return clientService.getById(id);
+    @GetMapping("/{id}")
+    public ClientDto getById(@PathVariable Long id){
+        return clientService.findClient(id);
     }
 
     @GetMapping("/getAll")

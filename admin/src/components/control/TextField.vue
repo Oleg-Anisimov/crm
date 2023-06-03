@@ -1,13 +1,20 @@
 <template>
   <p v-if="label" class="label">{{ label }}</p>
-  <input :class="['text', `text_${color}`]" v-if="type === 'text'" type="text" :placeholder="placeholder">
-  <textarea :class="['text', `text_${color}`]" v-if="type === 'text-area'"  :placeholder="placeholder"></textarea>
+  <input v-model="value" :class="['text', `text_${actualColor}`]" v-if="type === 'text'" type="text" :placeholder="placeholder" @blur="validateAndSend">
+  <textarea  v-model="value" :class="['text', `text_${actualColor}`]" v-if="type === 'text-area'"  :placeholder="placeholder"   @blur="validateAndSend"></textarea>
 
 </template>
 
 <script>
 export default {
   name: "TextField",
+  emits: ['valueChanged'],
+  data() {
+    return {
+      value: this.defaultValue,
+      actualColor: ''
+    }
+  },
   props: {
     label: {
       type: String,
@@ -27,6 +34,20 @@ export default {
       type: String,
       required: false,
       default: 'default'
+    },
+    defaultValue: {
+      type: String,
+      required: false
+    }
+  },
+  methods: {
+    validateAndSend(e) {
+      if (this.value === '') {
+        this.actualColor = 'error'
+      } else {
+        this.actualColor = ''
+      }
+      this.$emit('valueChanged', this.value)
     }
   }
 }

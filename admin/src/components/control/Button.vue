@@ -1,5 +1,6 @@
+
 <template>
-  <button :class="['btn', `btn_${color}`]">{{ label }}</button>
+  <button :class="['btn', `btn_${size}`, `btn_${color}`]">{{ label }}</button>
 </template>
 
 <script>
@@ -15,6 +16,11 @@ export default {
       type: String,
       required: false,
       default: 'primary'
+    },
+    size: {
+      type: String,
+      required: false,
+      default: 'large'
     }
   }
 }
@@ -22,12 +28,25 @@ export default {
 
 <style lang="scss" scoped>
 .btn {
-  margin-top: 1em;
-  padding: 1em 5em;
+
   color: white;
-  border-radius: 8px;
   border: none;
   font-weight: bold;
+  &_large {
+    border-radius: 8px;
+    margin-top: 1em;
+    padding: 1em 5em;
+  }
+  &_medium {
+    border-radius: 5px;
+    margin-top: 0.7em;
+    padding: 0.7em 3em;
+  }
+  &_small {
+    border-radius: 3px;
+    margin-top: 0.5em;
+    padding: 0.5em 1em;
+  }
   &_primary {
     background-color: var(--primary);
 

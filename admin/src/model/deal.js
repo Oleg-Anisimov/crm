@@ -1,7 +1,10 @@
 export default class Deal {
     id;
     title;
-    amount;
-    status;
+    details;
+    archived;
+    statusId;
+    userId;
+    clientId;
 
 }

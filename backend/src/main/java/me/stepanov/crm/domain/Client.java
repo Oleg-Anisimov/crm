@@ -19,6 +19,9 @@ public class Client extends BaseEntity{
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "client_seq")
     private Long id;
 
+    @Column(name = "organization_name")
+    private String organizationName;
+
     @Embedded
     private ContactPerson contactPerson;
 

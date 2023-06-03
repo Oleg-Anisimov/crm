@@ -41,13 +41,14 @@ public class DatabaseInitializer {
     void initClients() {
         ClientDto clientDto = new ClientDto();
         clientDto.setClientType(ClientType.PERSONAL);
-        clientDto.setContactPerson(new ContactPerson("Иван", "Иванов", "Иванович", "+79003123121"));
+        clientDto.setOrganizationName("");
+        clientDto.setContactPerson(new ContactPerson("Иван", "Иванов", "Иванович", "+79003123121", "ivan@mail.com"));
         clientService.create(clientDto);
 
-        clientDto = new ClientDto(ClientType.PERSONAL, "79775830248", new ContactPerson("Петр", "Петров", "Петрович", "79775830249"));
+        clientDto = new ClientDto(ClientType.PERSONAL, "", new ContactPerson("Петр", "Петров", "Петрович", "79775830249", "petr@mail.com"));
         clientService.create(clientDto);
 
-        clientDto = new ClientDto(ClientType.CORPORATE, "74953763276", new ContactPerson("Ирина", "Иванова", "Корсикова", "79775830249"));
+        clientDto = new ClientDto(ClientType.CORPORATE, "ООО Рога и Копыта", new ContactPerson("Ирина", "Корсикова", "Ивановна", "79775830249", "ivanova.irina@roiko.ru"));
         clientService.create(clientDto);
 
     }
@@ -63,18 +64,13 @@ public class DatabaseInitializer {
     }
 
     void initUsers() {
-        UserDto userDto = new UserDto();
-        userDto.setFirstName("Олег");
-        userDto.setSecondName("Анисимов");
-        userDto.setMiddleName("Борисович");
-        userDto.setEmail("Lemain99@yandex.ru");
-        userDto.setPhone("+79175433205");
-        userDto.setPassword("66321");
-        userDto.setRoleId(1l);
+        UserDto first = new UserDto("Олег", "Анисимов", "Борисович", "79175433205", "Lemain99@yandex.ru", "Qwerty123",  1L);
+        UserDto second = new UserDto("Николай", "Степанов", "Николаевич", "79283763276", "kor51221@yandex.ru", "Qwerty123",  1L);
+        UserDto third = new UserDto("Екатерина", "Денисюк", "Андреевна", "79775830249", "kotyatina43@gmail.com", "Qwerty123",  1L);
 
-        userDetailsService.create(userDto);
-        userDetailsService.create(userDto);
-        userDetailsService.create(userDto);
+        userDetailsService.create(first);
+        userDetailsService.create(second);
+        userDetailsService.create(third);
 
 
     }
@@ -97,7 +93,6 @@ public class DatabaseInitializer {
     void initDeal() {
         DealDto dealDto = new DealDto();
         dealDto.setTitle("Проект");
-        dealDto.setAvatarUrl("аватарка");
         dealDto.setPrice(BigDecimal.valueOf(123.666666));
         dealDto.setArchived(true);
         dealDto.setDetails("Что то");
@@ -106,7 +101,10 @@ public class DatabaseInitializer {
         dealDto.setUserId(1l);
 
         dealService.create(dealDto);
+        dealDto.setUserId(2l);
         dealService.create(dealDto);
+        dealDto.setClientId(3l);
+        dealDto.setUserId(3l);
         dealService.create(dealDto);
 
     }

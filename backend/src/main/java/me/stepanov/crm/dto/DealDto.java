@@ -12,7 +12,6 @@ public class DealDto {
 
     private Long id;
     private String title;
-    private String avatarUrl;
     private String details;
     private Boolean archived;
     private BigDecimal price;

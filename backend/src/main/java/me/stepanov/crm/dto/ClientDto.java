@@ -16,23 +16,16 @@ import me.stepanov.crm.domain.enums.ClientType;
 public class ClientDto {
 
     private Long id;
-    private String person;
-    private String phone;
+
+    private String organizationName;
 
     private ContactPerson contactPerson;
 
     private ClientType clientType;
 
-    public ClientDto(Long id, String person, String phone, ClientType clientType) {
-        this.id = id;
-        this.person = person;
-        this.phone = phone;
-        this.clientType = clientType;
-    }
-
-    public ClientDto(ClientType type, String phone, ContactPerson contactPerson) {
+    public ClientDto(ClientType type, String organizationName, ContactPerson contactPerson) {
         this.clientType = type;
-        this.phone = phone;
+        this.organizationName = organizationName;
         this.contactPerson = contactPerson;
     }
 }

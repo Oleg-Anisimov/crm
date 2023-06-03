@@ -34,9 +34,8 @@ public class DealService {
         deal.setDetails(dealDto.getDetails());
         deal.setArchived(dealDto.getArchived());
         deal.setPrice(dealDto.getPrice());
-        deal.setAvatarUrl(dealDto.getAvatarUrl());
         deal.setUser(userDetailsServiceImpl.getById(dealDto.getUserId()));
-        deal.setStatus(statusService.getById(dealDto.getStatusId()));
+        deal.setStatus(statusService.getById(1l));
         deal.setClient(clientService.getById(dealDto.getClientId()));
         entityRepository.persist(deal);
         return mapper.map(deal,DealDto.class);
@@ -54,7 +53,6 @@ public class DealService {
         deal.setDetails(dealDto.getDetails());
         deal.setArchived(dealDto.getArchived());
         deal.setPrice(dealDto.getPrice());
-        deal.setAvatarUrl(dealDto.getAvatarUrl());
         deal.setUser(userDetailsServiceImpl.getById(dealDto.getUserId()));
         deal.setStatus(statusService.getById(dealDto.getStatusId()));
         deal.setClient(clientService.getById(dealDto.getClientId()));

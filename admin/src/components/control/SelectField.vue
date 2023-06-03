@@ -3,7 +3,7 @@
   <input class="text" type="text" v-model="state.value" :placeholder="placeholder" @click="changeState">
   <div class="dropdown" v-if="state.active && options.length != 0">
     <ul>
-      <li v-for="(text, i) in options" @click="setValue($event, text)">{{ text }}</li>
+      <li v-for="item in options" @click="setValue($event, item)">{{ item.text }}</li>
     </ul>
   </div>
 </template>
@@ -11,6 +11,7 @@
 <script>
 export default {
   name: "SelectField",
+  emits: ['itemSelected'],
   props: {
     label: {
       type: String,
@@ -44,8 +45,11 @@ export default {
     changeState() {
       this.state.active = !this.state.active
     },
-    setValue(event, value) {
-      this.state.value = value
+    setValue(event, item) {
+      this.state.value = item.text
+      this.$emit('itemSelected', item)
+
+      this.changeState()
     },
 
     getFilteredItems() {

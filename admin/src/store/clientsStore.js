@@ -1,5 +1,4 @@
 import axios from "axios";
-import Client from "../model/client.js";
 
 export const client = {
     namespaced: true,
@@ -8,35 +7,45 @@ export const client = {
     },
 
     getters: {
-        GET_ALL_CLIENTS: (state) => state.clients,
+        GET_ALL_CLIENTS(state) {
+            return state.clients;
+        },
         GET_CLIENT_BY_ID: (state) => (id) => {
             return state.clients.find(client => client.id === id)
         },
     },
 
     mutations: {
+        UPDATE_SINGLE_CLIENT: (state, client) => {
+            for (let i = 0; i < state.clients.length; i++) {
+                let current = state.clients[i];
+                if (current.id === client.id) {
+                    state.clients[i] = client;
+                }
+            }
+        },
         UPDATE_ALL_CLIENTS: (state, clients) => {
             state.clients = clients
         },
     },
     actions: {
+        FETCH_SINGLE({commit}, id) {
+            let url = `/api/client/${id}`
+            return axios.get(url)
+                    .then(response => {
+                        commit('UPDATE_SINGLE_CLIENT', response.data)
+                        return response.data
+                    })
+        },
         LOAD({commit}) {
             let url = '/api/client/getAll'
-            axios.get(url)
+            return axios.get(url)
                 .then((response) => {
-                    let allClients = []
-                    response.data.forEach(current => {
-                        let client = new Client()
-                        client.id = current.id
-                        client.clientType = current.clientType
-                        client.phone = current.phone
-                        client.fullName = current.person
-                        allClients.push(client)
-                    })
-                    commit('UPDATE_ALL_CLIENTS', allClients)
+                    commit('UPDATE_ALL_CLIENTS', response.data)
+                    return response.data
                 })
         },
-        CREATE() {}, //todo: complete
-        DELETER() {}, //todo: complete
+        CREATE() {},
+        DELETE() {},
     }
 }
