@@ -42,8 +42,9 @@ public class StatusService {
     }
 
     @Transactional
-    public Status getById(Long id){
-        return entityRepository.getById(Status.class,id);
+    public StatusDto getById(Long id){
+        Status statusId = entityRepository.getById(Status.class, id);
+        return mapper.map(statusId, StatusDto.class);
     }
 
     @Transactional

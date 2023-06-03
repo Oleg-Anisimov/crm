@@ -2,6 +2,7 @@ package me.stepanov.crm.service;
 
 import lombok.extern.slf4j.Slf4j;
 import me.stepanov.crm.domain.Deal;
+import me.stepanov.crm.domain.User;
 import me.stepanov.crm.dto.DealDto;
 import me.stepanov.crm.repo.EntityRepository;
 import org.modelmapper.ModelMapper;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
+
 
 @Service
 @Slf4j
@@ -34,7 +36,7 @@ public class DealService {
         deal.setDetails(dealDto.getDetails());
         deal.setArchived(dealDto.getArchived());
         deal.setPrice(dealDto.getPrice());
-        deal.setUser(userDetailsServiceImpl.getById(dealDto.getUserId()));
+        deal.setUser(entityRepository.getById(User.class,dealDto.getUserId()));
         deal.setStatus(statusService.getById(1l));
         deal.setClient(clientService.getById(dealDto.getClientId()));
         entityRepository.persist(deal);
@@ -53,7 +55,7 @@ public class DealService {
         deal.setDetails(dealDto.getDetails());
         deal.setArchived(dealDto.getArchived());
         deal.setPrice(dealDto.getPrice());
-        deal.setUser(userDetailsServiceImpl.getById(dealDto.getUserId()));
+        deal.setUser(entityRepository.getById(User.class, dealDto.getUserId()));
         deal.setStatus(statusService.getById(dealDto.getStatusId()));
         deal.setClient(clientService.getById(dealDto.getClientId()));
         entityRepository.persist(deal);
