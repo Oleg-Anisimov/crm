@@ -4,5 +4,6 @@ export default class Client {
     shortName;
     phone;
     clientType;
-
+    contactPerson;
+    organizationName;
 }

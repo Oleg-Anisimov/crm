@@ -13,11 +13,11 @@
 </template>
 
 <script>
-import DealCard from "../components/DealCard.vue";
-import Button from "../components/control/Button.vue";
+import DealCard from "../../components/DealCard.vue";
+import Button from "../../components/control/Button.vue";
 import draggable from 'vuedraggable'
 import {mapActions, mapGetters} from "vuex";
-import DealsList from "../components/DealsList.vue";
+import DealsList from "../../components/DealsList.vue";
 import {ref} from "vue";
 
 export default {
@@ -64,7 +64,7 @@ export default {
 <style scoped>
   .content {
     display: grid;
-    grid-template-columns: 300px 300px 300px 300px;
+    grid-template-columns: repeat(auto-fit, 300px);
     grid-column-gap: 1em;
     margin: 0 auto;
   }

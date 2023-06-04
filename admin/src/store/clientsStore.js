@@ -27,6 +27,9 @@ export const client = {
         UPDATE_ALL_CLIENTS: (state, clients) => {
             state.clients = clients
         },
+        ADD_CLIENT: (state, client) => {
+            state.clients.push(client)
+        }
     },
     actions: {
         FETCH_SINGLE({commit}, id) {
@@ -45,7 +48,12 @@ export const client = {
                     return response.data
                 })
         },
-        CREATE() {},
-        DELETE() {},
+        CREATE({commit}, client) {
+            let url = '/api/client/create'
+            return axios.post(url, client).then(response => {
+                commit('ADD_CLIENT', response.data)
+                return response
+            })
+        },
     }
 }

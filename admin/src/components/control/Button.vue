@@ -62,6 +62,14 @@ export default {
       background-color: var(--second-hover);
     }
   }
+
+  &_red {
+    background-color: var(--danger);
+
+    &:enabled:hover {
+      background-color: var(--danger-hover);
+    }
+  }
 }
 
 </style>

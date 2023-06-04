@@ -50,8 +50,8 @@
 
 <script>
 import {mapActions} from "vuex";
-import DropdownButton from "../components/control/DropdownButton.vue";
-import ClientPreview from "../components/ClientPreview.vue";
+import DropdownButton from "../../components/control/DropdownButton.vue";
+import ClientPreview from "../../components/ClientPreview.vue";
 
 export default {
   name: "SingleDealPage",

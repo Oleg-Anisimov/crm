@@ -19,9 +19,9 @@ import NumberField from "@/components/control/NumberField.vue"
 import CustomButton from "@/components/control/Button.vue"
 import SelectField from "@/components/control/SelectField.vue"
 import {mapActions, mapGetters} from "vuex";
-import SelectableItem from "../model/selectableItem.js";
-import Deal from "../model/deal.js";
-import router from "../router.js";
+import SelectableItem from "../../model/selectableItem.js";
+import Deal from "../../model/deal.js";
+import router from "../../router.js";
 
 export default {
   name: "DealCreationPage",

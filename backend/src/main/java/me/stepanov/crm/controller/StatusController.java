@@ -21,9 +21,9 @@ public class StatusController {
         return statusService.create(statusDto);
     }
 
-    @GetMapping("/delete")
-    public ResponseEntity delete(Long id) {
-        statusService.delete(id);
+    @PostMapping("/delete")
+    public ResponseEntity delete(@RequestBody StatusDto dto) {
+        statusService.delete(dto.getId());
         return ResponseEntity.ok().build();
     }
 
@@ -34,7 +34,7 @@ public class StatusController {
     }
 
     @GetMapping("/{id}")
-    public Status getById(@PathVariable Long id){
+    public StatusDto getById(@PathVariable Long id){
         return statusService.getById(id);
     }
 

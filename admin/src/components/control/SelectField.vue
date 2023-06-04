@@ -50,13 +50,6 @@ export default {
       this.$emit('itemSelected', item)
 
       this.changeState()
-    },
-
-    getFilteredItems() {
-      if (this.state.value !== '') {
-        console.log(true)
-      }
-      return this.options
     }
   }
 

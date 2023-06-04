@@ -57,6 +57,7 @@ public class EntityRepository {
         CriteriaBuilder builder = entityManager.getCriteriaBuilder();
         CriteriaQuery<E> cq = builder.createQuery(entityClass);
         Root<E> entity = cq.from(entityClass);
+        cq.orderBy(builder.asc(entity.get("id")));
         TypedQuery<E> query = entityManager.createQuery(cq);
 
         return query.getResultList();

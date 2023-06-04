@@ -1,17 +1,19 @@
 <template>
   <p v-if="label" class="label">{{ label }}</p>
-  <input v-model="value" :class="['text', `text_${actualColor}`]" v-if="type === 'text'" type="text" :placeholder="placeholder" @blur="validateAndSend">
-  <textarea  v-model="value" :class="['text', `text_${actualColor}`]" v-if="type === 'text-area'"  :placeholder="placeholder"   @blur="validateAndSend"></textarea>
+  <input v-model="mutableValue" :class="['text', `text_${actualColor}`]" v-if="type === 'text'" type="text" :placeholder="placeholder" @blur="validateAndSend">
+  <textarea v-model="mutableValue" :class="['text', `text_${actualColor}`]" v-if="type === 'text-area'" :placeholder="placeholder" @blur="validateAndSend"></textarea>
 
 </template>
 
 <script>
+import {ref} from "vue";
+
 export default {
   name: "TextField",
   emits: ['valueChanged'],
   data() {
     return {
-      value: this.defaultValue,
+      mutableValue: this.defaultValue,
       actualColor: ''
     }
   },
@@ -25,6 +27,11 @@ export default {
       required: false,
       default: 'Введите значение'
     },
+    mask: {
+      type: String,
+      required: false,
+      default: ''
+    },
     type: {
       type: String,
       required: true,
@@ -37,17 +44,22 @@ export default {
     },
     defaultValue: {
       type: String,
-      required: false
+      required: false,
+      default: ''
     }
   },
   methods: {
     validateAndSend(e) {
-      if (this.value === '') {
+      if (this.mutableValue === '') {
         this.actualColor = 'error'
       } else {
         this.actualColor = ''
       }
-      this.$emit('valueChanged', this.value)
+      this.$emit('valueChanged', this.mutableValue)
+    },
+    clear() {
+      this.actualColor = ''
+      this.mutableValue = ''
     }
   }
 }

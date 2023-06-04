@@ -1,18 +1,20 @@
 import {createRouter, createWebHistory} from "vue-router";
 import MainPage from "./pages/MainPage.vue";
-import DealsPage from "./pages/DealsPage.vue";
-import ClientsPage from "./pages/ClientsPage.vue";
+import DealsPage from "./pages/deals/DealsPage.vue";
+import ClientsPage from "./pages/clients/ClientsPage.vue";
 import PaymentsPage from "./pages/PaymentsPage.vue";
-import DealCreationPage  from "./pages/DealCreationPage.vue";
-import SingleDealPage from "./pages/SingleDealPage.vue";
+import DealCreationPage  from "./pages/deals/DealCreationPage.vue";
+import SingleDealPage from "./pages/deals/SingleDealPage.vue";
+import ClientCreationPage from "./pages/clients/ClientCreationPage.vue";
+import SettingsPage from "./pages/SettingsPage.vue";
 
 export default createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
     routes: [
         {
             path: '/',
-            name: 'Main',
-            component: MainPage,
+            name: 'Сделки',
+            component: DealsPage,
         },
         {
             path: '/deals',
@@ -21,7 +23,7 @@ export default createRouter({
         },
         {
             path: '/deal/:id',
-            name: 'Deal',
+            name: 'Сделка',
             component: SingleDealPage,
             props: true
         },
@@ -29,6 +31,11 @@ export default createRouter({
             path: '/clients',
             name: 'Clients',
             component: ClientsPage
+        },
+        {
+            path: '/clients/new',
+            name: 'Создание клиента',
+            component: ClientCreationPage
         },
         {
             path: '/payments',
@@ -39,7 +46,12 @@ export default createRouter({
             path: '/deals/new',
             name: 'Deal New',
             component: DealCreationPage
-        }
+        },
+        {
+            path: '/settings',
+            name: 'Настройки',
+            component: SettingsPage
+        },
 
     ]
 })
