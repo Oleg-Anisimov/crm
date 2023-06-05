@@ -1,6 +1,7 @@
 <template>
   <p v-if="label" class="label">{{ label }}</p>
-  <input v-model="mutableValue" :class="['text', `text_${actualColor}`]" v-if="type === 'text'" type="text" :placeholder="placeholder" @blur="validateAndSend">
+  <input ref="input" v-model="mutableValue" :class="['text', `text_${color}`]" v-if="type === 'text'" type="text" :placeholder="placeholder" @blur="validateAndSend">
+  <input ref="input" v-model="mutableValue" :class="['text', `text_${color}`]" v-if="type === 'password'" type="password" :placeholder="placeholder" @blur="validateAndSend">
   <textarea v-model="mutableValue" :class="['text', `text_${actualColor}`]" v-if="type === 'text-area'" :placeholder="placeholder" @blur="validateAndSend"></textarea>
 
 </template>
@@ -14,7 +15,7 @@ export default {
   data() {
     return {
       mutableValue: this.defaultValue,
-      actualColor: ''
+      actualColor: this.color
     }
   },
   props: {

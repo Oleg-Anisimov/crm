@@ -55,10 +55,12 @@ public class DatabaseInitializer {
 
     void initRole() {
         RoleDto roleDto = new RoleDto();
-        roleDto.setRoleName("админ");
+        roleDto.setRoleName("admin");
 
         roleService.create(roleDto);
+        roleDto.setRoleName("manager");
         roleService.create(roleDto);
+        roleDto.setRoleName("user");
         roleService.create(roleDto);
 
     }

@@ -1,5 +1,8 @@
 <template>
-  <div class="wrapper">
+  <div v-if="$route.name === 'Auth'" class="auth">
+    <router-view/>
+  </div>
+  <div v-if="$route.name !== 'Auth'" class="wrapper">
     <sidebar/>
     <div class="content">
       <router-view/>

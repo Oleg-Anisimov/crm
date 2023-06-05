@@ -7,14 +7,15 @@ import DealCreationPage  from "./pages/deals/DealCreationPage.vue";
 import SingleDealPage from "./pages/deals/SingleDealPage.vue";
 import ClientCreationPage from "./pages/clients/ClientCreationPage.vue";
 import SettingsPage from "./pages/SettingsPage.vue";
+import AuthPage from "./pages/AuthPage.vue";
 
 export default createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
     routes: [
         {
-            path: '/',
-            name: 'Сделки',
-            component: DealsPage,
+            path: '/auth',
+            name: 'Auth',
+            component: AuthPage,
         },
         {
             path: '/deals',

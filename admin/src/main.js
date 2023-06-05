@@ -4,9 +4,20 @@ import App from './App.vue'
 import router from "./router.js";
 import store from "./store/store.js";
 
+let isAuthenticated = function () {
+    let data = store.getters["users/AUTHENTICATED"]
+    console.log(data)
+    return data
+}
+
 router.beforeEach((to, from, next) => {
-    document.title = to.name;
-    next();
+
+    if (to.fullPath === '/auth' || isAuthenticated()) {
+        document.title = to.name
+        next();
+    } else {
+        next('/auth');
+    }
 })
 
 createApp(App)

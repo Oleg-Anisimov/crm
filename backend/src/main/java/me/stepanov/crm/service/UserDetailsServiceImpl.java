@@ -6,8 +6,12 @@ import me.stepanov.crm.domain.Role;
 import me.stepanov.crm.domain.User;
 import me.stepanov.crm.dto.UserDto;
 import me.stepanov.crm.repo.EntityRepository;
+import me.stepanov.crm.repo.UserRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -19,11 +23,12 @@ import java.util.stream.Collectors;
 @Service
 @Transactional
 @RequiredArgsConstructor
-public class UserDetailsServiceImpl {
+public class UserDetailsServiceImpl implements UserDetailsService {
 
     private final ModelMapper mapper;
     private final PasswordEncoder passwordEncoder;
     private final EntityRepository entityRepository;
+    private final UserRepository userRepository;
 
     
     public UserDto create(UserDto userDto){
@@ -71,4 +76,15 @@ public class UserDetailsServiceImpl {
         return entityRepository.list(User.class).stream()
                 .map(entity ->mapper.map(entity,UserDto.class)).collect(Collectors.toList());
     }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        User user = userRepository.findUserByEmail(username);
+        if (user == null) {
+            throw new UsernameNotFoundException("User not fount with email " + username);
+        }
+        return user;
+    }
+    
+    
 }

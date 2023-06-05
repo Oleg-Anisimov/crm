@@ -1,14 +1,22 @@
 import axios from "axios";
 import User from "../model/user.js";
+import qs from "qs";
 
 
 export const users = {
     namespaced: true,
     state: {
+        currentUser: null,
         users: []
     },
 
     getters: {
+        AUTHENTICATED(state) {
+            return state.currentUser || localStorage.getItem('currentUser')
+        },
+        GET_CURRENT_USER(state) {
+            return state.currentUser
+        },
         GET_ALL_USERS: (state) => state.users,
         GET_USER_BY_ID: (state) => (id) => {
             return state.users.find(user => user.id === id)
@@ -16,6 +24,9 @@ export const users = {
     },
 
     mutations: {
+        ADD_USER: (state, user) => {
+          state.users.push(user)
+        },
         UPDATE_SINGLE_USER: (state, user) => {
             for (let i = 0; i < state.users.length; i++) {
                 let current = state.users[i];
@@ -27,9 +38,26 @@ export const users = {
         UPDATE_ALL_USERS: (state, users) => {
             state.users = users
         },
+        SET_CURRENT_USER: (state, authResult) => {
+            localStorage.setItem('currentUser', JSON.stringify(authResult))
+            state.currentUser = authResult
+        }
     },
 
     actions: {
+        LOGIN({commit}, credentials) {
+            let url = '/api/perform_login';
+            const options = {
+                method: 'POST',
+                data: qs.stringify(credentials)
+            }
+            return axios(url, options)
+                .then((response) => {
+                    console.log(response.data)
+                    commit('SET_CURRENT_USER', response.data)
+                    return response
+                })
+        },
         FETCH_SINGLE({commit}, id) {
             let url = `/api/users/${id}`
             return axios.get(url)
@@ -52,7 +80,16 @@ export const users = {
                     return userList
                 })
         },
-        CREATE() {},
-        DELETER() {},
+        CREATE({commit}, user) {
+            let url = '/api/users/create'
+            return axios.post(url, user).then(response => {
+                if (response.status === 200) {
+                    let dto = response.data
+                    commit('ADD_USER', new User(dto.id, dto.firstName, dto.secondName, dto.middleName, dto.phone, dto.email, dto.roleId))
+                }
+            })
+        },
+        UPDATE() {},
+        DELETE() {}
     }
 }
