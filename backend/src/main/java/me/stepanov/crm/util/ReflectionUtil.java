@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 public class ReflectionUtil {
 
     public Set<Class> getEntityClasses(String packageName) {
-        InputStream stream = ClassLoader.getSystemClassLoader()
+        InputStream stream = ReflectionUtil.class.getClassLoader()
                 .getResourceAsStream(packageName.replaceAll("[.]", "/"));
         BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
         return reader.lines()
