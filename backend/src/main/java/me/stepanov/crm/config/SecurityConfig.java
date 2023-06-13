@@ -44,13 +44,13 @@ public class SecurityConfig {
                 .defaultSuccessUrl("/")
                 .successHandler(successHandler())
                 .failureHandler(((request, response, exception) -> {
-                    response.setStatus(401);
+                    response.setStatus(401); //UNAUTHORIZED
                 }))
                 .and()
                 .logout()
                 .logoutUrl("/perform_logout")
                 .logoutSuccessHandler(((request, response, authentication) -> {
-                    response.setStatus(200);
+                    response.setStatus(200); //ok
                 }));
 
         return http.build();
